@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Dscret": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
