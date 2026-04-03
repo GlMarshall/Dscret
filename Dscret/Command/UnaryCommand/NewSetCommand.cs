@@ -22,13 +22,14 @@ namespace Dscret.Command.UnaryCommand
                 Console.WriteLine("Error: Name Must be Letter A - Z");
                 return;
             }
-            if (!context.Repository.Contains(setName))
+            if (context.Repository.Contains(setName))
             {
                 Console.WriteLine("Set is Already Exists");
                 return;
             }
             context.Repository.Add(setName, new Set(setName));
             Console.WriteLine($"Set {setName} created");
+
         }
 
         public override string GetHelp()

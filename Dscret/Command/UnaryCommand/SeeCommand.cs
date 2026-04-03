@@ -20,7 +20,7 @@ namespace Dscret.Command.UnaryCommand
                     Console.WriteLine($"Error: Set {setName} is not Exist");
                     return;
                 }
-                Console.WriteLine(set);
+                Console.WriteLine(set.ToString());
             }
             else
             {

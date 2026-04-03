@@ -1,6 +1,5 @@
 ﻿using Dscret.Command;
 using Dscret.Command.Base;
-using Dscret.Interfaces;
 
 namespace Dscret
 {
@@ -28,15 +27,16 @@ namespace Dscret
                 if (input.ToLower() == "exit")
                 {
                     Console.WriteLine($"Bye");
+                    break;
                 }
 
-                ICommand<CommandContext> command = factory.GetCommand(input);
+                var (command, arg) = factory.GetCommand(input);
 
                 if (command != null)
                 {
                     try
                     {
-                        command.Execute(context, new string[] { input });
+                        command.Execute(context, arg);
                     }
                     catch (Exception ex)
                     {

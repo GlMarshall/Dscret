@@ -4,8 +4,8 @@ namespace Dscret.Repository
 {
     public class Set : ISet
     {
-        public char Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public SortedSet<char> Elements { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public char Name { get; set; }
+        public SortedSet<char> Elements { get; set; }
         public int Count { get { return Elements.Count; } }
         public bool IsEmpty { get { return Elements.Count == 0; } }
 
@@ -76,5 +76,12 @@ namespace Dscret.Repository
             if (other == null) return false;
             return Elements.SetEquals(other.Elements);
         }
+        public override string ToString()
+        {
+            if (Elements.Count == 0)
+                return $"{Name}: {{пустое множество}}";
+            return $"{Name}: {{{string.Join(", ", Elements)}}}";
+        }
+
     }
 }

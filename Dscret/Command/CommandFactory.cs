@@ -38,30 +38,33 @@ namespace Dscret.Command
             _commands["help"] = new HelpCommand(_context, _commands);
         }
 
-        public ICommand<CommandContext> GetCommand(string input)
+        public (ICommand<CommandContext>, string[]) GetCommand(string input)
         {
-            string[] parts = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            string commandKey = parts[0].ToLower();
+            string[] args = input.Trim().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (args.Length == 0)
+                return (null, null);
+
+            string commandKey = args[0].ToLower();
 
             if (_commands.ContainsKey(commandKey))
             {
-                return _commands[commandKey];
+                return (_commands[commandKey], args);
             }
 
-            foreach (var cmd in _operationCommands)
-            {
-                string helpText = cmd.GetHelp();
-                if (helpText.Contains('+') && input.Contains('+') ||
-                    helpText.Contains('&') && input.Contains('&') ||
-                    helpText.Contains('-') && input.Contains('-') ||
-                    helpText.Contains('<') && input.Contains('<') ||
-                    helpText.Contains('=') && input.Contains('='))
-                {
-                    return cmd;
-                }
-            }
+            if (input.Contains('+'))
+                return (new UnionCommand(_context), new string[] { input });
+            if (input.Contains('&'))
+                return (new IntersectionCommand(_context), new string[] { input });
+            if (input.Contains('-'))
+                return (new DifferenceCommand(_context), new string[] { input });
+            if (input.Contains('<'))
+                return (new SubsetCommand(_context), new string[] { input });
+            if (input.Contains('='))
+                return (new EqualityCommand(_context), new string[] { input });
 
-            return null;
+            return (null, null);
         }
+
     }
 }
