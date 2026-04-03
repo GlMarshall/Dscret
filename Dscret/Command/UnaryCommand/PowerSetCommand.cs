@@ -18,7 +18,7 @@ namespace Dscret.Command.UnaryCommand
 
             if (!context.Repository.TryGetSet(setName, out Set set))
             {
-                Console.WriteLine($"Error: Set {setName} is ont Exists");
+                Console.WriteLine($"Error: Set {setName} is not Exists");
                 return;
             }
 
@@ -31,10 +31,18 @@ namespace Dscret.Command.UnaryCommand
 
             for (int i = 0; i < powerSetSize; i++)
             {
-                SortedSet<char> subset = new SortedSet<char>();
+                IList<char> subset = new List<char>();
+                int temp = i;
+
                 for (int j = 0; j < n; j++)
                 {
-                    if ((i & 1 << j) != 0)
+                    int divisor = 1;
+                    for (int k = 0; k < j; k++)
+                    {
+                        divisor *= 2;
+                    }
+
+                    if ((temp / divisor) % 2 == 1)
                     {
                         subset.Add(elements[j]);
                     }
@@ -48,6 +56,7 @@ namespace Dscret.Command.UnaryCommand
                 if (i < powerSetSize - 1)
                     Console.Write(", ");
             }
+
             Console.WriteLine(" }");
         }
 

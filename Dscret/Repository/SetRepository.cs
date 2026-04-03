@@ -32,9 +32,9 @@ namespace Dscret.Repository
             }
 
             Console.WriteLine("Set List");
-            foreach (var item in _items)
+            foreach (var set in _items.Values)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(set.ToString());
             }
         }
         public bool TryGetSet(char key, out Set set)
