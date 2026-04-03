@@ -31,21 +31,18 @@ namespace Dscret.Command.UnaryCommand
 
             for (int i = 0; i < powerSetSize; i++)
             {
-                IList<char> subset = new List<char>();
-                int temp = i;
+                List<char> subset = new List<char>();
+                int number = i;
+                int position = 0;
 
-                for (int j = 0; j < n; j++)
+                while (number > 0 && position < n)
                 {
-                    int divisor = 1;
-                    for (int k = 0; k < j; k++)
+                    if (number % 2 == 1)
                     {
-                        divisor *= 2;
+                        subset.Add(elements[position]);
                     }
-
-                    if ((temp / divisor) % 2 == 1)
-                    {
-                        subset.Add(elements[j]);
-                    }
+                    number = number / 2;
+                    position++;
                 }
 
                 if (subset.Count == 0)
@@ -56,6 +53,7 @@ namespace Dscret.Command.UnaryCommand
                 if (i < powerSetSize - 1)
                     Console.Write(", ");
             }
+
 
             Console.WriteLine(" }");
         }
