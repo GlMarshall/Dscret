@@ -1,4 +1,5 @@
 ﻿using Dscret.Command.Base;
+using Dscret.Repository;
 
 namespace Dscret.Command.BinaryCommand
 {
@@ -8,10 +9,9 @@ namespace Dscret.Command.BinaryCommand
         protected override string GetOperationSymbol() => "+";
         protected override string GetOperationName() => "Union";
 
-        protected override SortedSet<char> Operate(SortedSet<char> setA, SortedSet<char> setB)
+        protected override Set Operate(Set setA, Set setB)
         {
-            SortedSet<char> result = new SortedSet<char>(setA);
-            result.UnionWith(setB);
+            Set result = setA.Union(setB);
             return result;
         }
 

@@ -6,7 +6,7 @@ namespace Dscret.Command.Base
     {
         protected BinaryOperationCommand(CommandContext context) : base(context) { }
         protected abstract string GetOperationSymbol();
-        protected abstract SortedSet<char> Operate(SortedSet<char> setA, SortedSet<char> setB);
+        protected abstract Set Operate(Set setA, Set setB);
         protected abstract string GetOperationName();
 
         public override void Execute(CommandContext context, string[] args)
@@ -35,8 +35,8 @@ namespace Dscret.Command.Base
                 return;
             }
 
-            SortedSet<char> result = Operate(setA.Elements, setB.Elements);
-            Console.WriteLine($"{GetOperationName()} {setNameA} {GetOperationSymbol()} {setNameB} = {{{string.Join(", ", result)}}}");
+            Set result = Operate(setA, setB);
+            Console.WriteLine($"{GetOperationName()} {setNameA} {GetOperationSymbol()} {setNameB} ={string.Join(", ", result)}");
         }
     }
 }

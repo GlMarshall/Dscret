@@ -34,7 +34,7 @@ namespace Dscret.Command.BinaryCommand
                 return;
             }
 
-            bool isSubset = setA.IsSubSetOf(setB);
+            bool isSubset = setA.IsSubsetOf(setB);
 
             if (isSubset)
             {
