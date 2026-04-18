@@ -1,5 +1,6 @@
 ﻿using Dscret.Command.Base;
 using Dscret.Command.BinaryCommand;
+using Dscret.Command.RelationCommands;
 using Dscret.Command.UnaryCommand;
 using Dscret.Interfaces;
 
@@ -35,6 +36,11 @@ namespace Dscret.Command
             _operationCommands.Add(new SubsetCommand(_context));
             _operationCommands.Add(new EqualityCommand(_context));
 
+            _commands["load"] = new LoadRelationCommand(_context);
+            _commands["show"] = new ShowRelationCommand(_context);
+            _commands["unionrel"] = new RelationUnionCommand(_context);
+            _commands["intersectrel"] = new RelationIntersesctionCommand(_context);
+
             _commands["help"] = new HelpCommand(_context, _commands);
         }
 
@@ -52,6 +58,7 @@ namespace Dscret.Command
                 return (_commands[commandKey], args);
             }
 
+            //if (input.Contains("+") && !input.StartsWith("union"))
             if (input.Contains('+'))
                 return (new UnionCommand(_context), new string[] { input });
             if (input.Contains('&'))

@@ -10,7 +10,7 @@ namespace Dscret
             CommandContext context = new CommandContext();
             CommandFactory factory = new CommandFactory(context);
 
-            Console.WriteLine("--- Program fro working with Sets ---");
+            Console.WriteLine("--- Program for working with Sets ---");
             Console.WriteLine("Enter Command 'help', for view all Commands");
             Console.WriteLine();
             while (true)

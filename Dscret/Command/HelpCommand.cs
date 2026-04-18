@@ -17,7 +17,7 @@ namespace Dscret.Command
             {
                 Console.WriteLine("  " + cmd.Value.GetHelp());
             }
-            Console.WriteLine("  help - show commands");
+            //Console.WriteLine("  help - show commands");
             Console.WriteLine("  exit - Exit");
             Console.WriteLine();
         }
