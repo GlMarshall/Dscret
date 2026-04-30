@@ -57,7 +57,7 @@
         public void PrintMatrix()
         {
             Console.WriteLine("Matrix Relation");
-            Console.Write(" ");
+            Console.Write("    ");
             foreach (char c in Elements) Console.Write($"{c} ");
             Console.WriteLine();
 
@@ -363,7 +363,7 @@
                 bool isMaximal = true;
                 for (int j = 0; j < Elements.Count; j++)
                 {
-                    if (i != j && Matrix[j, i])
+                    if (i != j && Matrix[i, j])
                     {
                         isMaximal = false;
                         break;
