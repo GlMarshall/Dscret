@@ -332,7 +332,8 @@
         }
         public List<char> GetMinimalElements()
         {
-            if (IsPartianOrder()) return null;
+            if (!IsPartianOrder() || Elements == null || Elements.Count == 0)
+                return new List<char>();
             List<char> minimal = new List<char>();
             for (int i = 0; i < Elements.Count; i++)
             {
@@ -354,7 +355,8 @@
         }
         public List<char> GetMaximalElements()
         {
-            if (!IsPartianOrder()) return null;
+            if (!IsPartianOrder() || Elements == null || Elements.Count == 0)
+                return new List<char>();
             List<char> maximal = new List<char>();
             for (int i = 0; i < Elements.Count; i++)
             {
@@ -431,7 +433,8 @@
 
             Console.WriteLine("\n--- Elements Partitial Order Set ---");
             Console.WriteLine($"Minimal Elements: {(minimal.Count > 0 ? "{" + string.Join(", ", minimal) + "}" : "no")}");
-            Console.WriteLine($"Minimal Elements: {(maximal.Count > 0 ? "{" + string.Join(", ", maximal) + "}" : "no")}");
+            Console.WriteLine($"Maximal Elements: {(maximal.Count > 0 ? "{" + string.Join(", ", maximal) + "}" : "no")}");
+
 
             if (smallest.HasValue)
             {
