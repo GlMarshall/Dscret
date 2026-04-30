@@ -2,9 +2,9 @@
 {
     public class BinaryRelation
     {
-        public List<char> Elements { get; set; }
-        public bool[,] Matrix { get; set; }
-        public string RelationName { get; set; }
+        public List<char>? Elements { get; set; }
+        public bool[,]? Matrix { get; set; }
+        public string? RelationName { get; set; }
         public BinaryRelation(string filename)
         {
             LoadFromFile(filename);
@@ -285,6 +285,7 @@
             Console.WriteLine($"6. Equivalense Relation: {(IsEquivalence() ? "+" : "-")}");
             Console.WriteLine($"7. Partial Order Relation: {(IsPartianOrder() ? "+" : "-")}");
             Console.WriteLine($"8. Total Order Relation: {(IsTotalOrder() ? "+" : "-")}");
+            Console.WriteLine($"9. Connection(Linear): {(IsConnected() ? "+" : "-")}");
         }
         public List<List<char>> GetEquivalenceClasses()
         {
@@ -449,6 +450,20 @@
             {
                 Console.WriteLine("Greaterst Element: absent");
             }
+        }
+        public bool IsConnected()
+        {
+            for (int i = 0; i < Elements.Count; i++)
+            {
+                for (int j = 0; j < Elements?.Count; j++)
+                {
+                    if (!Matrix[i, j] && !Matrix[j, i])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }
